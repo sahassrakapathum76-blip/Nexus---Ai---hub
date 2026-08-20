@@ -3,213 +3,498 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b1220">
 <title>Nexus AI</title>
 
 <style>
-*{box-sizing:border-box}
-body{
+*{
+  box-sizing:border-box;
   margin:0;
-  font-family:Arial,sans-serif;
-  background:#eef4f3;
-  color:#101827;
+  padding:0;
 }
-header{
-  padding:20px;
-  background:#0b1220;
-  color:white;
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#071018;
+  color:#fff;
+  min-height:100vh;
+}
+
+.header{
+  height:70px;
   display:flex;
+  align-items:center;
   justify-content:space-between;
-  align-items:center;
+  padding:0 18px;
+  background:#0d1822;
+  border-bottom:1px solid #263642;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
-.logo{
+
+.brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
+  font-size:21px;
+  font-weight:700;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:#13bfe3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#061018;
+  font-size:23px;
+}
+
+.menu{
+  background:none;
+  border:0;
+  color:white;
+  font-size:27px;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:22px 15px 120px;
+}
+
+.hero{
+  padding:25px 5px;
+}
+
+.hero small{
+  color:#67cce3;
+  letter-spacing:3px;
+}
+
+.hero h1{
+  font-size:38px;
+  margin-top:12px;
+}
+
+.hero p{
+  color:#91a4b1;
+  margin-top:10px;
+  line-height:1.6;
+}
+
+.card{
+  background:#101e29;
+  border:1px solid #263b49;
+  border-radius:22px;
+  padding:18px;
+  margin-top:18px;
+}
+
+.card h2{
+  margin-bottom:12px;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #344b5a;
+  background:#08131c;
+  color:#fff;
+  outline:none;
+}
+
+button{
+  cursor:pointer;
+}
+
+.save{
+  margin-top:10px;
+  padding:12px 18px;
+  border:0;
+  border-radius:12px;
+  background:#13bfe3;
+  color:#061018;
+  font-weight:bold;
+}
+
+.chat{
+  margin-top:20px;
+  min-height:420px;
+  display:flex;
+  flex-direction:column;
+}
+
+.messages{
+  flex:1;
+  overflow-y:auto;
+  padding:5px;
+}
+
+.message{
+  max-width:85%;
+  padding:14px 16px;
+  border-radius:17px;
+  margin:10px 0;
+  line-height:1.55;
+  white-space:pre-wrap;
+}
+
+.user{
+  background:#13bfe3;
+  color:#061018;
+  margin-left:auto;
+  border-bottom-right-radius:5px;
+}
+
+.ai{
+  background:#1a2a36;
+  border:1px solid #2b414f;
+  margin-right:auto;
+  border-bottom-left-radius:5px;
+}
+
+.empty{
+  text-align:center;
+  color:#718693;
+  padding:80px 20px;
+}
+
+.input-area{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
+
+.input-area textarea{
+  flex:1;
+  resize:none;
+  min-height:55px;
+  max-height:150px;
+  padding:15px;
+  border-radius:16px;
+  border:1px solid #344b5a;
+  background:#08131c;
+  color:white;
+  outline:none;
+  font-family:inherit;
+}
+
+.send{
+  width:58px;
+  border:0;
+  border-radius:16px;
+  background:#13bfe3;
+  color:#061018;
   font-size:22px;
   font-weight:bold;
 }
-.bot{
-  width:42px;
-  height:42px;
-  border-radius:14px;
-  background:#20c9e8;
-  display:grid;
-  place-items:center;
-  color:#07111d;
-  font-size:23px;
-}
-main{
-  max-width:900px;
-  margin:auto;
-  padding:25px 16px 120px;
-}
-.hero{
-  background:linear-gradient(135deg,#102033,#193b50);
-  color:white;
-  border-radius:28px;
-  padding:35px 25px;
-  margin-bottom:20px;
-}
-.hero h1{
-  font-size:38px;
-  margin:10px 0;
-}
-.hero p{
-  color:#cbd7df;
-  line-height:1.6;
-}
-.chat{
-  background:white;
-  border-radius:25px;
-  padding:20px;
-  min-height:430px;
-  box-shadow:0 8px 30px #0001;
-}
-.messages{
-  min-height:330px;
-}
-.welcome{
-  text-align:center;
-  padding:70px 15px;
-  color:#667085;
-}
-.message{
-  padding:13px 16px;
-  border-radius:18px;
-  margin:10px 0;
-  max-width:85%;
-  line-height:1.5;
-}
-.user{
-  background:#d9f7ff;
-  margin-left:auto;
-}
-.ai{
-  background:#f0f3f5;
-}
-.input-area{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-}
-input{
-  flex:1;
-  padding:16px;
-  border:1px solid #d7dde2;
-  border-radius:18px;
-  font-size:16px;
-  outline:none;
-}
-button{
-  border:0;
-  border-radius:18px;
-  padding:0 22px;
-  background:#20c9e8;
-  color:#07111d;
-  font-weight:bold;
-  font-size:16px;
-}
-button:active{transform:scale(.97)}
-.nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:white;
-  border-top:1px solid #ddd;
-  display:flex;
-  justify-content:space-around;
-  padding:12px;
-}
-.nav div{
-  text-align:center;
+
+.status{
   font-size:12px;
-  color:#667085;
+  color:#7d929f;
+  margin-top:8px;
+}
+
+.footer{
+  text-align:center;
+  color:#536875;
+  margin-top:30px;
+  font-size:12px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    <div class="bot">🤖</div>
+<header class="header">
+  <div class="brand">
+    <div class="logo">N</div>
     Nexus AI
   </div>
-  <div>☰</div>
+
+  <button class="menu">☰</button>
 </header>
 
-<main>
+<main class="container">
 
 <section class="hero">
-  <small>NEXUS AI HUB</small>
-  <h1>Your AI. One place.</h1>
+  <small>NEXUS AI • ALL IN ONE</small>
+  <h1>Your AI, your space.</h1>
   <p>
-    Chat, create, explore and build with your personal AI workspace.
+    Chat, think, create and explore with Nexus AI.
   </p>
 </section>
 
-<section class="chat">
+<section class="card">
+  <h2>🔑 Gemini API Key</h2>
 
-<div id="messages" class="messages">
-  <div class="welcome">
-    <h2>👋 Welcome to Nexus AI</h2>
-    <p>Ask me anything to get started.</p>
-  </div>
-</div>
-
-<div class="input-area">
   <input
-    id="prompt"
-    type="text"
-    placeholder="Ask Nexus AI..."
-    autocomplete="off"
+    id="apiKey"
+    type="password"
+    placeholder="Paste your Gemini API key here"
   >
-  <button onclick="sendMessage()">Send</button>
-</div>
+
+  <button class="save" onclick="saveKey()">
+    Save Key
+  </button>
+
+  <div class="status" id="keyStatus">
+    API key is not saved.
+  </div>
+</section>
+
+<section class="card chat">
+
+  <div class="messages" id="messages">
+
+    <div class="empty" id="empty">
+      <h2>👋 Welcome to Nexus AI</h2>
+      <p>Ask me anything.</p>
+    </div>
+
+  </div>
+
+  <div class="input-area">
+
+    <textarea
+      id="prompt"
+      placeholder="Message Nexus AI..."
+      onkeydown="handleKey(event)"
+    ></textarea>
+
+    <button class="send" onclick="sendMessage()">
+      ➤
+    </button>
+
+  </div>
+
+  <div class="status" id="status">
+    Ready
+  </div>
 
 </section>
 
+<div class="footer">
+  Nexus AI • Built with Gemini API
+</div>
+
 </main>
 
-<nav class="nav">
-  <div>🏠<br>Home</div>
-  <div>💬<br>Chat</div>
-  <div>✨<br>Create</div>
-  <div>🧪<br>Lab</div>
-  <div>⚙️<br>Settings</div>
-</nav>
-
 <script>
-const input = document.getElementById("prompt");
+
+const MODEL = "gemini-2.5-flash";
+
+let history = [];
+
+const apiKeyInput = document.getElementById("apiKey");
 const messages = document.getElementById("messages");
+const promptInput = document.getElementById("prompt");
+const statusText = document.getElementById("status");
+const keyStatus = document.getElementById("keyStatus");
 
-input.addEventListener("keydown", function(e){
-  if(e.key === "Enter") sendMessage();
-});
 
-function sendMessage(){
-  const text = input.value.trim();
-  if(!text) return;
+// Load saved key
+const savedKey = localStorage.getItem("nexus_gemini_key");
 
-  const welcome = document.querySelector(".welcome");
-  if(welcome) welcome.remove();
+if(savedKey){
+  apiKeyInput.value = savedKey;
+  keyStatus.textContent = "API key saved on this device.";
+}
 
-  const user = document.createElement("div");
-  user.className = "message user";
-  user.textContent = text;
-  messages.appendChild(user);
 
-  input.value = "";
+// Save API key
+function saveKey(){
 
-  const ai = document.createElement("div");
-  ai.className = "message ai";
-  ai.textContent = "Nexus AI is ready. 🤖 AI connection will be added next.";
-  messages.appendChild(ai);
+  const key = apiKeyInput.value.trim();
+
+  if(!key){
+    keyStatus.textContent = "Please enter an API key.";
+    return;
+  }
+
+  localStorage.setItem("nexus_gemini_key", key);
+
+  keyStatus.textContent =
+    "✓ API key saved on this device.";
+
+}
+
+
+// Enter = send
+function handleKey(event){
+
+  if(event.key === "Enter" && !event.shiftKey){
+
+    event.preventDefault();
+
+    sendMessage();
+
+  }
+
+}
+
+
+// Add message
+function addMessage(text, type){
+
+  const empty = document.getElementById("empty");
+
+  if(empty){
+    empty.remove();
+  }
+
+  const div = document.createElement("div");
+
+  div.className = "message " + type;
+
+  div.textContent = text;
+
+  messages.appendChild(div);
 
   messages.scrollTop = messages.scrollHeight;
+
+  return div;
 }
+
+
+// Send message
+async function sendMessage(){
+
+  const apiKey =
+    localStorage.getItem("nexus_gemini_key") ||
+    apiKeyInput.value.trim();
+
+  const text = promptInput.value.trim();
+
+  if(!apiKey){
+
+    alert("First enter your Gemini API key.");
+
+    apiKeyInput.focus();
+
+    return;
+  }
+
+  if(!text) return;
+
+
+  addMessage(text,"user");
+
+  promptInput.value = "";
+
+  statusText.textContent = "Nexus AI is thinking...";
+
+
+  const aiMessage =
+    addMessage("Thinking...","ai");
+
+
+  history.push({
+
+    role:"user",
+
+    parts:[
+      {text:text}
+    ]
+
+  });
+
+
+  try{
+
+    const response = await fetch(
+
+      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${encodeURIComponent(apiKey)}`,
+
+      {
+
+        method:"POST",
+
+        headers:{
+          "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify({
+
+          contents: history,
+
+          systemInstruction:{
+            parts:[
+              {
+                text:
+                "You are Nexus AI, a helpful, friendly and intelligent AI assistant. Answer clearly and naturally."
+              }
+            ]
+          }
+
+        })
+
+      }
+
+    );
+
+
+    const data = await response.json();
+
+
+    if(!response.ok){
+
+      throw new Error(
+        data?.error?.message ||
+        "Gemini API request failed."
+      );
+
+    }
+
+
+    const reply =
+      data?.candidates?.[0]?.content?.parts
+      ?.map(part => part.text || "")
+      .join("")
+      .trim();
+
+
+    if(!reply){
+
+      throw new Error(
+        "No response was returned by Gemini."
+      );
+
+    }
+
+
+    aiMessage.textContent = reply;
+
+
+    history.push({
+
+      role:"model",
+
+      parts:[
+        {text:reply}
+      ]
+
+    });
+
+
+    statusText.textContent = "Ready";
+
+
+  }catch(error){
+
+    aiMessage.textContent =
+      "⚠️ Error: " + error.message;
+
+    statusText.textContent = "Something went wrong.";
+
+  }
+
+}
+
 </script>
 
 </body>
